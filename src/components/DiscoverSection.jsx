@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const DiscoverSection = () => {
   return (
@@ -32,7 +33,7 @@ const DiscoverSection = () => {
             {/* Three Paragraphs */}
             <div className="space-y-4 md:space-y-5 text-white text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl">
               <p>
-                At Himalaya Tribe, we offer you a unique and unforgettable trekking experience that takes you through alpine meadows, reveals sunrises above snowy heights, and gifts you nights under starlit skies. Every trail we choose is carefully selected to give you the authentic mountain experience — one that connects you deeply with nature and the local culture.
+                At Remote Trek, we offer you a unique and unforgettable trekking experience that takes you through alpine meadows, reveals sunrises above snowy heights, and gifts you nights under starlit skies. Every trail we choose is carefully selected to give you the authentic mountain experience — one that connects you deeply with nature and the local culture.
               </p>
               
               <p>
@@ -45,17 +46,21 @@ const DiscoverSection = () => {
             </div>
 
             {/* CTA Button */}
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-6 md:mt-8 px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
             >
-              KNOW MORE {'>>'}
-            </motion.button>
+              <Link
+                to="/about-us"
+                className="inline-block mt-6 md:mt-8 px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
+              >
+                KNOW MORE {'>>'}
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

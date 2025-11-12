@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const PopularTreksSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -6,6 +7,22 @@ const PopularTreksSection = () => {
   const [cardWidth, setCardWidth] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef(null)
+
+  // Function to convert trek name to route slug
+  const getTrekRoute = (trekName) => {
+    const routeMap = {
+      'BALI PASS': '/trek-bali-pass-trek',
+      'KEDARKANTHA': '/trek-kedarkantha-trek',
+      'HAR KI DUN': '/trek-har-ki-dun-trek',
+      'DAYARA BUGYAL': '/trek-dayara-bugyal',
+      'GAUMUKH TAPOVAN': '/trek-gaumukh-tapovan-trek',
+      'CHOPTA': '/trek-chopta-trek',
+      'VALLEY OF FLOWERS': '/trek-valley-of-flowers-trek',
+      'NAG TIBBA': '/trek-nag-tibba-trek',
+      'PHULARA RIDGE': '/trek-phulara-ridge'
+    }
+    return routeMap[trekName] || '/explore-treks'
+  }
 
   // Responsive cards per view
   useEffect(() => {
@@ -207,11 +224,15 @@ const PopularTreksSection = () => {
                 >
                   <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full">
                     {/* Image Container - adjusts to image natural size */}
-                    <div className="relative w-full" style={{ minHeight: '400px', maxHeight: '600px' }}>
+                    <Link 
+                      to={getTrekRoute(trek.name)}
+                      className="block relative w-full cursor-pointer"
+                      style={{ minHeight: '400px', maxHeight: '600px' }}
+                    >
                       <img
                         src={trek.image}
                         alt={trek.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover cursor-pointer"
                         style={{ display: 'block' }}
                         loading="lazy"
                       />
@@ -255,7 +276,7 @@ const PopularTreksSection = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}

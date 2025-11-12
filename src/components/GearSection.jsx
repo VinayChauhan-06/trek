@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const GearSection = () => {
   return (
@@ -51,17 +52,21 @@ const GearSection = () => {
 
         {/* CTA Button */}
         <div className="text-center">
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
           >
-            CONTACT US {'>>'}
-          </motion.button>
+            <Link
+              to="/contact"
+              className="inline-block px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
+            >
+              CONTACT US {'>>'}
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

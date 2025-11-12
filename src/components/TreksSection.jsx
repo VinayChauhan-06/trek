@@ -1,9 +1,26 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const TreksSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cardsPerView, setCardsPerView] = useState(4) // Show 4 cards at once on desktop
   const [cardWidth, setCardWidth] = useState(0)
+
+  // Function to convert trek name to route slug
+  const getTrekRoute = (trekName) => {
+    const routeMap = {
+      'BALI PASS': '/trek-bali-pass-trek',
+      'KEDARKANTHA': '/trek-kedarkantha-trek',
+      'HAR KI DUN': '/trek-har-ki-dun-trek',
+      'DAYARA BUGYAL': '/trek-dayara-bugyal',
+      'GAUMUKH TAPOVAN': '/trek-gaumukh-tapovan-trek',
+      'CHOPTA': '/trek-chopta-trek',
+      'VALLEY OF FLOWERS': '/trek-valley-of-flowers-trek',
+      'NAG TIBBA': '/trek-nag-tibba-trek',
+      'PHULARA RIDGE': '/trek-phulara-ridge'
+    }
+    return routeMap[trekName] || '/explore-treks'
+  }
 
   // Responsive cards per view
   useEffect(() => {
@@ -136,7 +153,7 @@ const TreksSection = () => {
         {/* Header Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Himalaya Tribes Treks for 2025
+            Remote Trek Treks for 2025
           </h2>
           <p className="text-base md:text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
             Looking for your next Himalayan adventure? As the best trekking company in Uttarakhand, we bring you the most awaited upcoming treks of the season. Whether you're interested in snow trails, scenic valleys or beginner treks, we have something unique & something great for everyone.
@@ -183,11 +200,15 @@ const TreksSection = () => {
                 >
                   <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full">
                     {/* Image Container - adjusts to image natural size */}
-                    <div className="relative w-full" style={{ minHeight: '400px', maxHeight: '600px' }}>
+                    <Link 
+                      to={getTrekRoute(trek.name)}
+                      className="block relative w-full cursor-pointer"
+                      style={{ minHeight: '400px', maxHeight: '600px' }}
+                    >
                       <img
                         src={trek.image}
                         alt={trek.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover cursor-pointer"
                         style={{ display: 'block' }}
                         loading="lazy"
                       />
@@ -231,7 +252,7 @@ const TreksSection = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -241,9 +262,12 @@ const TreksSection = () => {
 
         {/* Explore All Treks Button */}
         <div className="text-center">
-          <button className="px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <Link 
+            to="/explore-treks"
+            className="inline-block px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          >
             EXPLORE ALL TREKS &gt;&gt;
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
 
 const Hero = () => {
+  const navigate = useNavigate()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isTreksDropdownOpen, setIsTreksDropdownOpen] = useState(false)
@@ -75,7 +76,12 @@ const Hero = () => {
       'Dayara Bugyal',
       'Nag Tibba Trek'
     ],
-    'Monsoon Treks': []
+    'Monsoon Treks': ['Valley of Flowers Trek']
+  }
+
+  const handleCallNow = () => {
+    // Works in both mobile and webview
+    window.location.href = 'tel:+917248708755'
   }
 
   // Hero slides data
@@ -129,12 +135,12 @@ const Hero = () => {
   const heroImage = 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070'
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
       {/* Header Bar */}
       <header className="fixed top-0 left-0 right-0 z-50 shadow-lg">
         {/* Top Contact Bar - Hidden on scroll down */}
         <motion.div 
-          className="hidden md:block bg-himalaya-green-dark"
+          className="bg-himalaya-green-dark"
           initial={{ height: 'auto' }}
           animate={{ 
             height: showTopBar ? 'auto' : 0,
@@ -142,28 +148,28 @@ const Hero = () => {
           transition={{ duration: 0.3 }}
           style={{ overflow: 'hidden' }}
         >
-          <div className="flex items-center justify-end gap-6 px-4 py-2">
-            <div className="flex items-center gap-2 text-white text-sm">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center justify-center sm:justify-end gap-3 sm:gap-6 px-3 sm:px-4 py-1.5 sm:py-2">
+            <a href="tel:+917248708755" className="flex items-center gap-1.5 sm:gap-2 text-white text-xs sm:text-sm hover:opacity-80 transition-opacity">
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>+91 7248708755</span>
-            </div>
-            <div className="flex items-center gap-2 text-white text-sm">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="whitespace-nowrap">+91 7248708755</span>
+            </a>
+            <a href="mailto:info.himalayatribe@gmail.com" className="hidden sm:flex items-center gap-2 text-white text-sm hover:opacity-80 transition-opacity">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span>info.himalayatribe@gmail.com</span>
-            </div>
+              <span className="truncate max-w-[200px]">info.himalayatribe@gmail.com</span>
+            </a>
           </div>
         </motion.div>
 
         {/* Main Header */}
-        <div className="flex items-center justify-between px-4 md:px-8 py-4 bg-white relative">
+        <div className="flex items-center justify-between px-3 sm:px-4 md:px-8 py-3 md:py-4 bg-white relative">
           {/* Logo - Adventure Explorer Logo */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <svg 
-              className="w-16 h-16 md:w-20 md:h-20" 
+              className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20" 
               viewBox="0 0 200 200" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
@@ -191,11 +197,11 @@ const Hero = () => {
               </g>
             </svg>
             <div className="flex flex-col">
-              <h1 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-tight" style={{ fontFamily: 'sans-serif' }}>
-                ADVENTURE
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black uppercase tracking-tight" style={{ fontFamily: 'sans-serif', lineHeight: '1.1' }}>
+                REMOTE
               </h1>
-              <p className="text-sm md:text-base font-normal text-black uppercase tracking-wide -mt-1" style={{ fontFamily: 'sans-serif' }}>
-                EXPLORER
+              <p className="text-xs sm:text-sm md:text-base font-normal text-black uppercase tracking-wide -mt-0.5 sm:-mt-1" style={{ fontFamily: 'sans-serif' }}>
+                TREK
               </p>
             </div>
           </div>
@@ -269,29 +275,37 @@ const Hero = () => {
                         className="py-2 border-l border-gray-200 bg-gray-50"
                         style={{ minWidth: '220px' }}
                       >
-                        {trekCategories[hoveredTrekCategory].map((trek) => (
-                          <a
-                            key={trek}
-                            href={`#trek-${trek.toLowerCase().replace(/\s+/g, '-')}`}
-                            className="block px-6 py-3 text-gray-800 hover:bg-white hover:text-himalaya-green transition-colors duration-200"
-                          >
-                            {trek}
-                          </a>
-                        ))}
+                        {trekCategories[hoveredTrekCategory].map((trek) => {
+                          const trekSlug = trek.toLowerCase().replace(/\s+/g, '-')
+                          const trekRoute = `/trek-${trekSlug}`
+                          return (
+                            <button
+                              key={trek}
+                              type="button"
+                              onClick={() => navigate(trekRoute)}
+                              className="block w-full text-left px-6 py-3 text-gray-800 hover:bg-white hover:text-himalaya-green transition-colors duration-200"
+                            >
+                              {trek}
+                            </button>
+                          )
+                        })}
                       </motion.div>
                     )}
                   </div>
                 </motion.div>
               )}
             </div>
-            <a href="#chardham" className="text-gray-800 font-medium hover:text-himalaya-green transition-colors duration-300">Chardham Yatra</a>
+            <Link to="/chardham" className="text-gray-800 font-medium hover:text-himalaya-green transition-colors duration-300">Chardham Yatra</Link>
             <Link to="/contact" className="text-gray-800 font-medium hover:text-himalaya-green transition-colors duration-300">Contact</Link>
-            <a href="#blogs" className="text-gray-800 font-medium hover:text-himalaya-green transition-colors duration-300">Blogs</a>
+            <Link to="/blogs" className="text-gray-800 font-medium hover:text-himalaya-green transition-colors duration-300">Blogs</Link>
           </nav>
           
           {/* CALL NOW Button - Rightmost */}
           <div className="hidden lg:flex flex-shrink-0">
-            <button className="flex items-center gap-2 px-6 py-2.5 bg-himalaya-green-dark hover:bg-himalaya-green rounded-md text-white font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-md">
+            <button 
+              onClick={handleCallNow}
+              className="flex items-center gap-2 px-6 py-2.5 bg-himalaya-green-dark hover:bg-himalaya-green rounded-md text-white font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-md"
+            >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
@@ -300,12 +314,16 @@ const Hero = () => {
           </div>
 
           {/* Mobile Menu Button and CALL NOW - Right side */}
-          <div className="lg:hidden flex items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-himalaya-green-dark hover:bg-himalaya-green rounded-md text-white font-bold text-xs transition-all duration-300">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="lg:hidden flex items-center gap-2 sm:gap-3">
+            <button 
+              onClick={handleCallNow}
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-himalaya-green-dark hover:bg-himalaya-green rounded-md text-white font-bold text-[10px] sm:text-xs transition-all duration-300 whitespace-nowrap"
+            >
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              CALL NOW
+              <span className="hidden min-[375px]:inline">CALL NOW</span>
+              <span className="min-[375px]:hidden">CALL</span>
             </button>
             <button 
               className="text-gray-800 focus:outline-none"
@@ -359,15 +377,24 @@ const Hero = () => {
                           </a>
                           {trekCategories[category].length > 0 && (
                             <div className="pl-4 space-y-1">
-                              {trekCategories[category].map((trek) => (
-                                <a
-                                  key={trek}
-                                  href={`#trek-${trek.toLowerCase().replace(/\s+/g, '-')}`}
-                                  className="text-gray-600 text-sm block"
-                                >
-                                  {trek}
-                                </a>
-                              ))}
+                              {trekCategories[category].map((trek) => {
+                                const trekSlug = trek.toLowerCase().replace(/\s+/g, '-')
+                                const trekRoute = `/trek-${trekSlug}`
+                                return (
+                                  <button
+                                    key={trek}
+                                    type="button"
+                                    onClick={() => {
+                                      navigate(trekRoute)
+                                      setIsTreksDropdownOpen(false)
+                                      setIsMenuOpen(false)
+                                    }}
+                                    className="text-gray-600 text-sm block text-left w-full"
+                                  >
+                                    {trek}
+                                  </button>
+                                )
+                              })}
                             </div>
                           )}
                         </div>
@@ -375,9 +402,9 @@ const Hero = () => {
                     </motion.div>
                   )}
                 </div>
-                <a href="#chardham" className="text-gray-800 font-medium">Chardham Yatra</a>
-                <Link to="/contact" className="text-gray-800 font-medium">Contact</Link>
-                <a href="#blogs" className="text-gray-800 font-medium">Blogs</a>
+                <Link to="/chardham" className="text-gray-800 font-medium" onClick={() => setIsMenuOpen(false)}>Chardham Yatra</Link>
+                <Link to="/contact" className="text-gray-800 font-medium" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+                <Link to="/blogs" className="text-gray-800 font-medium" onClick={() => setIsMenuOpen(false)}>Blogs</Link>
               </div>
             </motion.nav>
           )}
@@ -450,7 +477,7 @@ const Hero = () => {
         </AnimatePresence>
 
         {/* Hero Content - Dynamic text based on current slide */}
-        <div className="absolute inset-0 flex items-center justify-center z-10">
+        <div className="absolute inset-0 flex items-center justify-center z-10 pt-20 sm:pt-24 md:pt-28">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -458,14 +485,14 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-center px-4 md:px-8 max-w-4xl"
+              className="text-center px-4 sm:px-6 md:px-8 max-w-4xl w-full"
             >
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 text-shadow leading-tight px-2"
               >
                 {slides[currentSlide].title}
               </motion.h1>
@@ -475,24 +502,26 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg px-6 py-4 mb-8 inline-block"
+                className="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg px-4 py-3 sm:px-6 sm:py-4 mb-6 sm:mb-8 inline-block max-w-full mx-2"
               >
-                <p className="text-base md:text-lg lg:text-xl text-white text-shadow">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white text-shadow">
                   {slides[currentSlide].subtitle}
                 </p>
               </motion.div>
 
-              <motion.button
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-himalaya-green-dark hover:bg-himalaya-green text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
-              >
-                Contact Now
-              </motion.button>
+              <Link to="/contact">
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 sm:px-8 sm:py-4 bg-himalaya-green-dark hover:bg-himalaya-green text-white font-bold text-base sm:text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
+                >
+                  Contact Now
+                </motion.button>
+              </Link>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -500,34 +529,34 @@ const Hero = () => {
         {/* Slider Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110"
           aria-label="Previous slide"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110"
           aria-label="Next slide"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Slider Dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-3">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
-                  ? 'w-10 h-3 bg-white'
-                  : 'w-3 h-3 bg-white bg-opacity-50 hover:bg-opacity-75'
+                  ? 'w-8 sm:w-10 h-2 sm:h-3 bg-white'
+                  : 'w-2 sm:w-3 h-2 sm:h-3 bg-white bg-opacity-50 hover:bg-opacity-75'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

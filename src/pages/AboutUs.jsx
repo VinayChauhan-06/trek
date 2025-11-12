@@ -40,7 +40,7 @@ const AboutUs = () => {
             >
               <img
                 src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                alt="Ram, founder of Himalaya Tribe in the Himalayas"
+                alt="Ram, founder of Remote Trek in the Himalayas"
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -59,7 +59,7 @@ const AboutUs = () => {
               
               <div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
                 <p>
-                  Greetings! I'm Ram. I started Himalaya Tribe to offer you truly local trekking experience. I take great pride in curating exceptional trekking experiences. With over 13 years of expertise under my belt, the Himalayas are not just my workplace—they are my home and passion.
+                  Greetings! I'm Ram. I started Remote Trek to offer you truly local trekking experience. I take great pride in curating exceptional trekking experiences. With over 13 years of expertise under my belt, the Himalayas are not just my workplace—they are my home and passion.
                 </p>
                 
                 <p>
@@ -280,7 +280,7 @@ const AboutUs = () => {
               Our Trek Members
             </h2>
             <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
-              Meet the passionate team behind Himalaya Tribe
+              Meet the passionate team behind Remote Trek
             </p>
           </motion.div>
 
@@ -288,12 +288,12 @@ const AboutUs = () => {
             {[
               {
                 name: "Ram Chauhan",
-                role: "Founder of Himalaya Tribe",
+                role: "Founder of Remote Trek",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
               },
               {
                 name: "Mukesh Chauhan",
-                role: "CEO of Himalaya Tribe",
+                role: "CEO of Remote Trek",
                 image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
               },
               {

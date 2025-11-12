@@ -1,74 +1,64 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const ChardhamSection = () => {
   return (
-    <section id="chardham" className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-gray-50">
+    <section id="chardham" className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column - Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Image - Left Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-2xl"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+              alt="Chardham Yatra - Spiritual Journey"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+          </motion.div>
+
+          {/* Text Content - Right Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="space-y-6"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              Chardham Tour – A Soulful Spiritual Journey
+            </h2>
+            
+            <div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
+              <p>
+                Thousands of devotees travel to the well-known holy circuit in Chardham each year. Situated in Uttarakhand's high Himalayas, the yatra comes to an end at the completion of visits to the four Hindu pilgrimage sites of Yamunotri, Gangotri, Kedarnath, and Badrinath.
+              </p>
+              
+              <p>
+                Our 12-day Chardham pilgrimage tour departing from Delhi provides holy darshan at all four shrines along with cosy lodging and amenities in between the yatra.
+              </p>
+            </div>
+
+            {/* CTA Button */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative h-[500px] lg:h-[600px] overflow-hidden"
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <img
-                src="https://himalayatribe.com/wp-content/uploads/2025/08/chardham.webp"
-                alt="Mountain backdrop"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-
-            {/* Right Column - Text Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="p-8 md:p-12 flex flex-col justify-center"
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Best Time for Chardham Yatra
-              </h2>
-
-              <div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed mb-8">
-                <p>
-                  The pleasant times for Chardham Yatra are from <strong>April to June</strong> and <strong>September to mid-November</strong>, offering good weather for a safe pilgrimage. These months provide the perfect conditions to complete your spiritual journey comfortably.
-                </p>
-
-                <p>
-                  The Chardham Yatra typically starts in late April or early May and continues until November, before heavy blizzards make the routes inaccessible. <strong>April to June</strong> offers clear skies, accessible roads, and moderate temperatures, making it one of the most popular times to visit.
-                </p>
-
-                <p>
-                  The <strong>post-monsoon season (September to November)</strong> is ideal for avoiding crowds and enjoying the scenic beauty of the Himalayas. The weather is pleasant, and the landscapes are lush and vibrant after the monsoon rains.
-                </p>
-
-                <p>
-                  It is advisable to <strong>avoid visiting during the monsoon season (July to August)</strong> due to the risk of landslides and heavy rainfall in the Himalayan region, which can make travel dangerous and challenging.
-                </p>
-
-                <p>
-                  Planning your Chardham Yatra during the recommended months ensures a <strong>spiritually pleasurable and problem-free experience</strong>, allowing you to focus entirely on your pilgrimage without weather-related concerns.
-                </p>
-              </div>
-
-              {/* CTA Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl self-start"
+              <Link
+                to="/chardham"
+                className="inline-block px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
-                KNOW MORE {'>>'}
-              </motion.button>
+                Explore Chardham Yatra {'>>'}
+              </Link>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

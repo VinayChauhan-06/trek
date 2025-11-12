@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const BlogsSection = () => {
   const blogs = [
@@ -176,7 +177,7 @@ const BlogsSection = () => {
                       transition={{ duration: 0.5, delay: 0.6 }}
                       className="text-white text-xs font-bold uppercase self-end"
                     >
-                      HIMALAYA TRIBE
+                      REMOTE TREK
                     </motion.div>
                   )}
 
@@ -236,13 +237,15 @@ const BlogsSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
-          >
-            VIEW MORE {'>>'}
-          </motion.button>
+          <Link to="/blogs">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-himalaya-green hover:bg-himalaya-green-dark text-white font-bold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:shadow-xl"
+            >
+              VIEW MORE {'>>'}
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

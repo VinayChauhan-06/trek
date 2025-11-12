@@ -19,7 +19,7 @@ const AboutSection = () => {
             
             <div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
               <p>
-                At Himalaya Tribe, we are proud to be known as one of the best trekking company in Dehradun. We have completed <strong>more than 300+ treks successfully</strong> with the people all over India and abroad in last 10 years. At Himalaya Tribe, we believe that every trek is more than just a journey; it's an immersion in nature, culture & the self. We offer unforgettable Himalayan treks for beginners & experienced trekkers alike.
+                At Remote Trek, we are proud to be known as one of the best trekking company in Dehradun. We have completed <strong>more than 300+ treks successfully</strong> with the people all over India and abroad in last 10 years. At Remote Trek, we believe that every trek is more than just a journey; it's an immersion in nature, culture & the self. We offer unforgettable Himalayan treks for beginners & experienced trekkers alike.
               </p>
               
               <p>
